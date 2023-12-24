@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ai Lesson Planner</title>
+    <link rel="stylesheet" href="style2.css">
+</head>
+<body>
+
+    <section id="hero">
+       <nav>
+          <div class="logo">Ai Lesson Planner </div>
+          <ul class="nav-links">
+            <li><a href="#" id="noteCreatorLink">Note Creator</a></li>
+            <li><a href="#" id="notesLink">Notes</a></li>
+            <li><a href="#" id="userLink">User</a></li>
+            <li><a href="#" id="signInLink">Sign In</a></li>
+          </ul>
+          <div class="burger">
+            <div class="line1"></div>
+            <div class="line2"></div>
+            <div class="line3"></div>
+          </div>
+        </nav>
+    </section>
+    <div class="tableContainer" id="app">
+        <table> 
+            <form method="POST" action="save_lesson_notes.php" >
+            <caption>GES Lesson Plan With AI</caption>
+            <caption>Weekly Lesson Plan</caption>
+            <caption>Week:  <span>
+                <select name="week" id="weekSelect">
+                        <option value="1">Week 1</option>
+                        <option value="2">Week 2</option>
+                        <option value="3">Week 3</option>
+                        <option value="4">Week 4</option>
+                        <option value="5">Week 5</option>
+                        <option value="4">Week 4</option>
+                        <option value="5">Week 5</option>
+                        <option value="6">Week 6</option>
+                        <option value="7">Week 7</option>
+                        <option value="8">Week 8</option>
+                        <option value="9">Week 9</option>
+                        <option value="10">Week 10</option>
+                        <option value="11">Week 11</option>
+                        <option value="12">Week 12</option>
+                        <option value="13">Week 13</option>
+                        <option value="14">Week 14</option>
+          
+                 </select>
+              </span></caption>
+
+            <tr>
+                <th>Week Ending : <span><input type="date" name="week_ending" id=""></span></th>
+                <th>Day: 
+                    <span>
+                        <select name="day">
+                    <option value="Monday">Monday</option>
+                    <option value="Tuesday">Tuesday</option>
+                    <option value="Wednesday">Wednesday</option>
+                    <option value="Thursday">Thursday</option>
+                    <option value="Friday">Friday</option>
+                  
+                </select>
+            </span>
+                </th>
+                <th>Subject: 
+                    <span>
+                        <select name="subject">
+                    <option value="Maths">Maths</option>
+                    <option value="English">English</option>
+                    <option value="Science">Science</option>
+                    <option value="ICT">Ict</option>
+                    <option value="French">French</option>
+                  
+                </select>
+            </span>
+                </th>
+            </tr>
+            <tr>
+                <th colspan="2">Duration <span><input type="text" name="duration" id=""></span></th>
+                <th>Strand
+                    <span><input type="text" name="strand" id="strandId"></span>
+                </th>
+            </tr>
+            <tr>
+                <th>Class:  
+                    <span>
+                        <select name="class_name">
+                    <option value="class1">Form 1</option>
+                    <option value="class2">Form 2</option>
+                    <option value="class3">Form 3</option>
+                  
+                </select>
+            </span>
+        </th>
+                <th>Class Size <span><input type="text" name="class_size" id=""></span></th>
+                <th>Sub Strand
+                    <span>
+                        <input type="text" name="sub_strand" id="subStrandId">
+                    </span>
+                </th>
+            </tr>
+            <tr>
+                <th>Content Standard
+                    <span>
+                        <input type="text" name="content_standard" id="contentStandardId">
+                    </span>
+                </th>
+                <th>Indicator
+                    <span>
+                        <input type="text" name="indicator" id="indicatorId">
+                    </span>
+                </th>
+                <th>Lesson <span><input type="text" name="lesson" id=""></span></th>
+            </tr>
+            <tr>
+                <th  rowspan="4">
+                    Teacher Activities  <span>
+                        <textarea  id="phase-duration" placeholder=" Teacher Activities" name="phase_duration" ></textarea>
+
+                    </span>
+                </th>
+                <th>Learner Activities 
+                    <span>
+                        <textarea id="learners-activities" placeholder="Learner Activities " name="learners_activities" ></textarea>
+
+                    </span> 
+                </th>
+                <th>Resources
+                    <span>
+                        <textarea id="resources" placeholder="Resources" name = "resources" ></textarea>
+
+                    </span>
+                </th>
+            </tr>
+          
+            <button type="submit" id="add-lesson">Add Lesson</button>
+        </form>
+        </table>
+
+    </div>
+
+    
+    <div id="chat-container">
+
+            <select name="" id="genOptions">
+                <option value="">Teacher Activities</option>
+                <option value="">Learner Activies</option>
+                <option value=""> Resources</option>
+
+            </select>
+       
+            <button id="send-button" onclick="generateTeacherActivity()">Generate </button>
+            <span>
+                <div id="loader" class="loader" style="display: none;"></div>
+            </span>
+            
+    </div>
+    <div>
+        
+
+    </div>
+
+    <section>
+
+    </section>
+   
+
+    <script>
+        
+        // Function to fetch config.json
+        async function fetchConfig() {
+            const response = await fetch('config.json');
+            const config = await response.json();
+            return config;
+        }
+
+        async function query(data) {
+            const config = await fetchConfig();
+
+            const response = await fetch(
+                config.url2,
+                {
+                    method: "POST",
+                    headers: { 
+                        'Content-Type': 'application/json',
+                'Authorization': config.authorization
+                    },
+                    
+                    body: JSON.stringify(data),
+                }
+            );
+            const result = await response.json();
+            return result;
+            console.log(response);
+        }
+        
+        
+        function appendMessage(message, sender) {
+            const chatLog = document.getElementById('chat-log');
+            const messageElement = document.createElement('div');
+            messageElement.classList.add(sender === 'user' ? 'user-message' : 'bot-message');
+            messageElement.innerText = message;
+            chatLog.appendChild(messageElement);
+            chatLog.scrollTop = chatLog.scrollHeight; // Auto-scroll to bottom
+        }
+
+
+   // Function to generate Teacher activity
+   async function generateTeacherActivity() {
+    const indicatorValue = document.getElementById('indicatorId').value;
+    const selectElement = document.getElementById('genOptions');
+    const loader = document.getElementById('loader');
+    if (!indicatorValue) return;
+    loader.style.display = 'block';
+
+    // Handle the change event of the select element
+    selectElement.addEventListener('change', async function() {
+        const selectedOption = selectElement.options[selectElement.selectedIndex].text;
+
+        if (selectedOption === 'Teacher Activities') {
+            const botResponses = await query({ "inputs": "steps to introduce a lesson on how to" + indicatorValue });
+            displayResponse(botResponses, 'phase-duration');
+        } else if (selectedOption === 'Learner Activies') {
+            const botResponses = await query({ "inputs": "learner activities on  a lesson on how to " + indicatorValue });
+            displayResponse(botResponses, 'learners-activities');
+        } else if (selectedOption === 'Resources') {
+            const botResponses = await query({ "inputs": "teaching resources needed to introduce a lesson on  " + indicatorValue });
+            displayResponse(botResponses, 'resources');
+        } else {
+            console.log('Selected option: Other');
+            // Add your code for other options if needed
+        }
+        loader.style.display = 'none';
+    });
+}
+
+// Function to display bot response in the specified textarea
+function displayResponse(botResponses, textareaId) {
+    const responseTextarea = document.getElementById(textareaId);
+    if (responseTextarea) {
+        responseTextarea.value = ''; // Clear previous content if needed
+
+        botResponses.forEach(botResponse => {
+            responseTextarea.value += botResponse.generated_text + '\n';
+        });
+    }
+}
+
+
+
+
+
+
+<!-- 
+        // Function to retrieve and display notes based on the selected week
+        document.getElementById("weekSelect").addEventListener("change", function () {
+            const selectedWeek = this.value;
+            retrieveNotes(selectedWeek);
+        });
+        
+        function retrieveNotes(selectedWeek) {
+            const xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function () {
+                if (this.readyState === 4 && this.status === 200) {
+                    const notes = JSON.parse(this.responseText);
+                    // Populate the retrieved notes in the respective input fields
+                    document.getElementsByName("duration")[0].value = notes.duration;
+                    document.getElementsByName("strand")[0].value = notes.strand;
+                    document.getElementsByName("class_size")[0].value = notes.class_size;
+                    document.getElementsByName("sub_strand")[0].value = notes.sub_strand;
+                    document.getElementsByName("content_standard")[0].value = notes.content_standard;
+                    document.getElementsByName("indicator")[0].value = notes.indicator;
+                    document.getElementsByName("lesson")[0].value = notes.lesson;
+                    // Add similar lines for other fields as necessary
+                }
+            };
+            xhr.open("GET", `retrieve_notes.php?week=${selectedWeek}`, true);
+            xhr.send();
+        }
+         -->
+
+    
+</script>
+
+</body>
+</html>

@@ -1,0 +1,6 @@
+{
+    "url": "https://api-inference.huggingface.co/models/facebook/blenderbot-400M-distill",
+    "authorization": "Bearer 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",
+    "url2": "https://api-inference.huggingface.co/models/HuggingFaceH4/zephyr-7b-beta"
+    
+}
