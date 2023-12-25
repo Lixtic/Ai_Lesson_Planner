@@ -4,6 +4,41 @@ body {
             margin: 0;
             padding: 0;
         }
+        nav{
+            display: flex;
+            height: 100px;
+            align-items: center;
+          justify-content: space-around;
+        }
+        nav ul{
+            display: flex;
+            gap: 20px;
+
+           align-content: space-between;
+            
+        }
+        ul li{
+            text-decoration: none;
+        }
+
+        .searchContainer{
+            position: relative;
+            width: 300px;
+        }
+        #searchInput{
+            width: 100%;
+            padding: 10px 30px 10px 10px;
+        }
+        .icon{
+            position:absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+         
+        }
+        .icon i {
+            font-size: 18px;
+        }
 
         #chat-container {
             align-items: center;
