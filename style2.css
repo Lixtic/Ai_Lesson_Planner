@@ -28,12 +28,14 @@ body {
         #searchInput{
             width: 100%;
             padding: 10px 30px 10px 10px;
+            box-sizing: border-box;
         }
         .icon{
             position:absolute;
             right: 20px;
             top: 50%;
             transform: translateY(-50%);
+            color: #999; 
          
         }
         .icon i {

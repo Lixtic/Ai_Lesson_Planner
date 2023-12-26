@@ -1,3 +1,56 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Lesson Notes</title>
+    <link rel="stylesheet" href="style2.css">
+</head>
+<body>
+<section id="hero">
+       <nav>
+          <div class="logo">Ai Lesson Planner </div>
+
+          <div class="searchContainer">         
+            <input type="text" name="search" id="searchInput" placeholder="Search...">
+            <span class="icon">
+                <i class="las la-search"></i>
+            </span>
+
+        </div>
+          <div class="linksContainer">
+            <ul class="nav-links">
+                <li><a href="#" id="noteCreatorLink">Note Creator</a></li>               
+                <li><a href="#" id="notesLink">My Notes</a></li>
+                <li><a href="#" id="curriculumLink">Curriculum</a></li>
+                    <ul class="user">
+                        <li><a href="#" id="signInLink">Sign In</a></li>
+                        <li><a href="#" id="signInLink">Sign Up</a></li>
+                    </ul>
+                
+              </ul>
+              
+          </div>
+         
+          
+          <div class="burger">
+            <div class="line1"></div>
+            <div class="line2"></div>
+            <div class="line3"></div>
+          </div>
+        </nav>
+    </section>
+<form method="GET">
+        <label for="weekSelect">Choose a Week:</label>
+        <select name="week" id="weekSelect">
+            <option value="1">Week 1</option>
+            <option value="2">Week 2</option>
+            <!-- Add other week options here -->
+        </select>
+        <button type="submit">Show Notes</button>
+    </form>
+
+
 <?php
 include "connect.php";
 
@@ -36,31 +89,15 @@ if (isset($_GET['week'])) {
         }
         echo "</table>";
     } else {
-        echo "0 results";
+        echo "No results found for this week.";
     }
 } else {
-    echo "No week selected";
+    echo "No week selected.";
 }
-
-echo" <style>
-    table {
-        width: 100%;
-        border-collapse: collapse;
-        margin-top: 20px;
-    }
-
-    th, td {
-        border: 1px solid #ddd;
-        padding: 8px;
-        text-align: left;
-    }
-
-    th {
-        background-color: #f2f2f2;
-        font-weight: bold;
-    }
-</style>";
 
 
 $conn->close();
 ?>
+    
+</body>
+</html>
