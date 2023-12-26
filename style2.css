@@ -4,6 +4,15 @@ body {
             margin: 0;
             padding: 0;
         }
+        .logo a {
+            text-decoration: none;
+            color: inherit;
+        }
+        
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
         nav{
             display: flex;
             height: 100px;
@@ -17,10 +26,7 @@ body {
            align-content: space-between;
             
         }
-        ul li{
-            text-decoration: none;
-        }
-
+      
         .searchContainer{
             position: relative;
             width: 300px;
@@ -179,6 +185,92 @@ body {
             box-sizing: border-box;
             font-family: Arial, sans-serif;
         }
+
+        .weeks-container {
+            margin: 20px;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        
+        .weeks-container form {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .weeks-container label {
+            margin-right: 10px;
+        }
+        
+        .weeks-container select {
+            padding: 5px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+        }
+        
+        .weeks-container button {
+            padding: 6px 12px;
+            font-size: 16px;
+            border: none;
+            border-radius: 3px;
+            background-color: #5cb85c;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        
+        .weeks-container button:hover {
+            background-color: #45a049;
+        }
+        
+      
+        
+        .weeks-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 70px);
+            grid-template-rows: auto;
+            gap: 10px;
+        }
+        
+        .week-box {
+            border: 1px solid #ccc;
+            padding: 10px;
+            text-align: center;
+        }
+        
+
+/* Slideshow styles */
+.slideshow-container {
+    max-width: 100%;
+    position: relative;
+    margin: auto;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2); /* Drop shadow effect */
+}
+
+.mySlides {
+    display: none;
+    border-radius: 10px; /* Add border radius for rounded corners */
+}
+
+.fade {
+    -webkit-animation-name: fade;
+    -webkit-animation-duration: 1.5s;
+    animation-name: fade;
+    animation-duration: 1.5s;
+}
+
+@-webkit-keyframes fade {
+    from {opacity: .4}
+    to {opacity: 1}
+}
+
+@keyframes fade {
+    from {opacity: .4}
+    to {opacity: 1}
+}
+
 
 
 

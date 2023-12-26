@@ -3,14 +3,17 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Lesson Notes</title>
+    <title> Notes |Ai Lesson Planner</title>
     <link rel="stylesheet" href="style2.css">
 </head>
 <body>
 <section id="hero">
        <nav>
-          <div class="logo">Ai Lesson Planner </div>
-
+       <div class="logo">
+    <h3>
+        <a href="index.html">Ai Lesson Planner</a>
+    </h3>
+</div>
           <div class="searchContainer">         
             <input type="text" name="search" id="searchInput" placeholder="Search...">
             <span class="icon">
@@ -20,8 +23,8 @@
         </div>
           <div class="linksContainer">
             <ul class="nav-links">
-                <li><a href="#" id="noteCreatorLink">Note Creator</a></li>               
-                <li><a href="#" id="notesLink">My Notes</a></li>
+                <li><a href="lessonplan.html" id="noteCreatorLink">Note Creator</a></li>               
+                <li><a href="retrieve_notes.php" id="notesLink">My Notes</a></li>
                 <li><a href="#" id="curriculumLink">Curriculum</a></li>
                     <ul class="user">
                         <li><a href="#" id="signInLink">Sign In</a></li>
@@ -31,7 +34,6 @@
               </ul>
               
           </div>
-         
           
           <div class="burger">
             <div class="line1"></div>
@@ -40,15 +42,43 @@
           </div>
         </nav>
     </section>
-<form method="GET">
+    <div class="weeks-container">
+    <form method="GET">
         <label for="weekSelect">Choose a Week:</label>
         <select name="week" id="weekSelect">
             <option value="1">Week 1</option>
             <option value="2">Week 2</option>
-            <!-- Add other week options here -->
+            <option value="3">Week 3</option>
+            <option value="4">Week 4</option>
+            <option value="5">Week 5</option>
+            <option value="6">Week 6</option>
+            <option value="7">Week 7</option>
+            <option value="8">Week 8</option>
+            <option value="9">Week 9</option>
+            <option value="10">Week 10</option>
+            <option value="11">Week 11</option>
+            <option value="12">Week 12</option>
+            
         </select>
         <button type="submit">Show Notes</button>
     </form>
+    
+<div class="weeks-grid">
+    <div class="week-box">Week 1</div>
+    <div class="week-box">Week 2</div>
+    <div class="week-box">Week 3</div>
+    <div class="week-box">Week 4</div>
+    <div class="week-box">Week 5</div>
+    <div class="week-box">Week 6</div>
+    <div class="week-box">Week 7</div>
+    <div class="week-box">Week 8</div>
+    <div class="week-box">Week 9</div>
+    <div class="week-box">Week 10</div>
+    
+</div>
+    </div>
+
+
 
 
 <?php
