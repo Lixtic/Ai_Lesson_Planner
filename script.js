@@ -84,32 +84,5 @@ botResponses.forEach(botResponse => {
 
 
 
-<!-- 
-// Function to retrieve and display notes based on the selected week
-document.getElementById("weekSelect").addEventListener("change", function () {
-    const selectedWeek = this.value;
-    retrieveNotes(selectedWeek);
-});
-
-function retrieveNotes(selectedWeek) {
-    const xhr = new XMLHttpRequest();
-    xhr.onreadystatechange = function () {
-        if (this.readyState === 4 && this.status === 200) {
-            const notes = JSON.parse(this.responseText);
-            // Populate the retrieved notes in the respective input fields
-            document.getElementsByName("duration")[0].value = notes.duration;
-            document.getElementsByName("strand")[0].value = notes.strand;
-            document.getElementsByName("class_size")[0].value = notes.class_size;
-            document.getElementsByName("sub_strand")[0].value = notes.sub_strand;
-            document.getElementsByName("content_standard")[0].value = notes.content_standard;
-            document.getElementsByName("indicator")[0].value = notes.indicator;
-            document.getElementsByName("lesson")[0].value = notes.lesson;
-            // Add similar lines for other fields as necessary
-        }
-    };
-    xhr.open("GET", `retrieve_notes.php?week=${selectedWeek}`, true);
-    xhr.send();
-}
- -->
 
 

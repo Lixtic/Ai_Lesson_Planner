@@ -5,6 +5,8 @@
     <meta charset="UTF-8">
     <title> Notes |Ai Lesson Planner</title>
     <link rel="stylesheet" href="style2.css">
+    <link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
+
 </head>
 <body>
 <section id="hero">
@@ -128,6 +130,6 @@ if (isset($_GET['week'])) {
 
 $conn->close();
 ?>
-    
+        <script src="search_script.js" ></script>
 </body>
 </html>
